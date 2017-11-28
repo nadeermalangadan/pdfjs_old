@@ -196,5 +196,9 @@ if (document.readyState === 'interactive' ||
     document.readyState === 'complete') {
   webViewerLoad();
 } else {
-  document.addEventListener('DOMContentLoaded', webViewerLoad, true);
+  PDFJS.webViewerLoad = function(src) {
+      DEFAULT_URL = src;
+      webViewerLoad();
+  };
+  // document.addEventListener('DOMContentLoaded', webViewerLoad, true);
 }
