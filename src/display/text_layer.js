@@ -70,6 +70,7 @@ var renderTextLayer = (function renderTextLayerClosure() {
     };
 
     task._textDivs.push(textDiv);
+    geom.str = geom.str.replace(/\u200B/g, ''); // remove emtry charector from HTML
     if (isAllWhitespace(geom.str)) {
       textDivProperties.isWhitespace = true;
       task._textDivProperties.set(textDiv, textDivProperties);
@@ -512,6 +513,7 @@ var renderTextLayer = (function renderTextLayerClosure() {
     _processItems(items, styleCache) {
       for (let i = 0, len = items.length; i < len; i++) {
         this._textContentItemsStr.push(items[i].str);
+        console.log(items[i].str.charCodeAt());
         appendText(this, items[i], styleCache);
       }
     },

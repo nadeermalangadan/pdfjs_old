@@ -25,9 +25,11 @@ const FindState = {
 
 const FIND_SCROLL_OFFSET_TOP = -50;
 const FIND_SCROLL_OFFSET_LEFT = -400;
-const FIND_TIMEOUT = 250; // ms
+const FIND_TIMEOUT = 10000; // ms
 
 const CHARACTERS_TO_NORMALIZE = {
+  '\u200B': '', // removed break charector
+  '\u2018': '\'', // Left single quotation mark
   '\u2018': '\'', // Left single quotation mark
   '\u2019': '\'', // Right single quotation mark
   '\u201A': '\'', // Single low-9 quotation mark
@@ -259,6 +261,10 @@ class PDFFindController {
         });
       });
     }
+  }
+
+  clearFindTimeout(){
+    clearTimeout(this.findTimeout);
   }
 
   executeCommand(cmd, state) {

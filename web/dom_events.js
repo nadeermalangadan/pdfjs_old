@@ -126,6 +126,11 @@ function attachDOMEventsToEventBus(eventBus) {
     });
     evt.source.container.dispatchEvent(event);
   });
+  eventBus.on('findBarClose', function(e) {
+    let event = document.createEvent('CustomEvent');
+    event.initCustomEvent('findBarClose', true, true, {});
+    e.source.bar.dispatchEvent(event);
+  });
 }
 
 let globalEventBus = null;

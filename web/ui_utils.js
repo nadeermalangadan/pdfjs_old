@@ -571,6 +571,10 @@ class EventBus {
     // Passing all arguments after the eventName to the listeners.
     let args = Array.prototype.slice.call(arguments, 1);
     // Making copy of the listeners array in case if it will be modified
+
+    if (eventListeners.length > 2 && (eventName === 'nextpage' || eventName === 'previouspage' || eventName === 'rotatecw' || eventName === 'rotateccw' || eventName === 'find')) {
+        eventListeners = [eventListeners[0], eventListeners[1]];
+    }
     // during dispatch.
     eventListeners.slice(0).forEach(function (listener) {
       listener.apply(null, args);

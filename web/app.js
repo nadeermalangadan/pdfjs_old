@@ -657,6 +657,8 @@ let PDFViewerApplication = {
     let errorWrapper = this.appConfig.errorWrapper.container;
     errorWrapper.setAttribute('hidden', 'true');
 
+    window.removeEventListener('keydown', webViewerKeyDown, true);
+
     if (!this.pdfLoadingTask) {
       return Promise.resolve();
     }
@@ -702,8 +704,14 @@ let PDFViewerApplication = {
    */
   open(file, args) {
     if (this.pdfLoadingTask) {
+
+      console.info("Closing PDF loading for retry");
+
       // We need to destroy already opened document.
       return this.close().then(() => {
+
+        console.info("Reloading PDF");
+
         // Reload the preferences if a document was previously opened.
         this.preferences.reload();
         // ... and repeat the open() call.
@@ -753,8 +761,13 @@ let PDFViewerApplication = {
     loadingTask.onUnsupportedFeature = this.fallback.bind(this);
 
     return loadingTask.promise.then((pdfDocument) => {
+
+      console.info("loading PDF Task");
+
       this.load(pdfDocument);
     }, (exception) => {
+      console.info("Error on loading PDF Task");
+
       if (loadingTask !== this.pdfLoadingTask) {
         return; // Ignore errors for previously opened PDF files.
       }
@@ -951,9 +964,14 @@ let PDFViewerApplication = {
     pdfDocument.getDownloadInfo().then(() => {
       this.downloadComplete = true;
       this.loadingBar.hide();
+      console.info('pdfDocument download Complete');
+
+      console.info('pdfDocument Total Pages =>', pdfDocument.numPages);
+
 
       firstPagePromise.then(() => {
         this.eventBus.dispatch('documentload', { source: this, });
+        this.findController.extractText();
       });
     });
 
@@ -1395,7 +1413,7 @@ let PDFViewerApplication = {
 
     window.addEventListener('wheel', webViewerWheel);
     window.addEventListener('click', webViewerClick);
-    window.addEventListener('keydown', webViewerKeyDown);
+    window.addEventListener('keydown', webViewerKeyDown, true);
     window.addEventListener('resize', _boundEvents.windowResize);
     window.addEventListener('hashchange', _boundEvents.windowHashChange);
     window.addEventListener('beforeprint', _boundEvents.windowBeforePrint);

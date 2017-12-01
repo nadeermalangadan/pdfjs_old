@@ -185,6 +185,9 @@ class PDFFindBar {
     this.toggleButton.classList.remove('toggled');
     this.bar.classList.add('hidden');
     this.findController.active = false;
+    this.findController.clearFindTimeout();
+    $('.highlight').removeAttr('class');
+    this.eventBus.dispatch('findBarClose', { source: this });
   }
 
   toggle() {
