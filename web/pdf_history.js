@@ -260,6 +260,13 @@ class PDFHistory {
   }
 
   /**
+   * clear History State.
+   */
+  clearHistoryState(){
+    this._pushOrReplaceState(null, true);
+  }
+
+  /**
    * @private
    */
   _pushOrReplaceState(destination, forceReplace = false) {
