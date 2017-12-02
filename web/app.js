@@ -49,17 +49,17 @@ const DEFAULT_SCALE_DELTA = 1.1;
 const DISABLE_AUTO_FETCH_LOADING_BAR_TIMEOUT = 5000;
 
 function configure(PDFJS) {
-  PDFJS.imageResourcesPath = './images/';
-  if (typeof PDFJSDev !== 'undefined' &&
-      PDFJSDev.test('FIREFOX || MOZCENTRAL || GENERIC || CHROME')) {
-    PDFJS.workerSrc = '../build/pdf.worker.js';
-  }
-  if (typeof PDFJSDev === 'undefined' || !PDFJSDev.test('PRODUCTION')) {
-    PDFJS.cMapUrl = '../external/bcmaps/';
-    PDFJS.workerSrc = '../src/worker_loader.js';
-  } else {
-    PDFJS.cMapUrl = '../web/cmaps/';
-  }
+  // PDFJS.imageResourcesPath = './images/';
+  // if (typeof PDFJSDev !== 'undefined' &&
+  //     PDFJSDev.test('FIREFOX || MOZCENTRAL || GENERIC || CHROME')) {
+  //   PDFJS.workerSrc = '../build/pdf.worker.js';
+  // }
+  // if (typeof PDFJSDev === 'undefined' || !PDFJSDev.test('PRODUCTION')) {
+  //   PDFJS.cMapUrl = '../external/bcmaps/';
+  //   PDFJS.workerSrc = '../src/worker_loader.js';
+  // } else {
+  //   PDFJS.cMapUrl = '../web/cmaps/';
+  // }
   PDFJS.cMapPacked = true;
 }
 
