@@ -150,8 +150,9 @@ var FontInspector = (function FontInspectorClosure() {
       fonts.appendChild(font);
       // Somewhat of a hack, should probably add a hook for when the text layer
       // is done rendering.
-      setTimeout(() => {
-        if (this.active) {
+      var _this = this;
+      setTimeout(function(){
+        if (_this.active) {
           resetSelection();
         }
       }, 2000);
@@ -460,14 +461,14 @@ var Stats = (function Stats() {
     name: 'Stats',
     panel: null,
     manager: null,
-    init(pdfjsLib) {
+    init: function init(pdfjsLib) {
       this.panel.setAttribute('style', 'padding: 5px;');
       pdfjsLib.PDFJS.enableStats = true;
     },
     enabled: false,
     active: false,
     // Stats specific functions.
-    add(pageNumber, stat) {
+    add: function add(pageNumber, stat) {
       if (!stat) {
         return;
       }
@@ -486,7 +487,7 @@ var Stats = (function Stats() {
       statsDiv.textContent = stat.toString();
       wrapper.appendChild(title);
       wrapper.appendChild(statsDiv);
-      stats.push({ pageNumber, div: wrapper, });
+      stats.push({ pageNumber: pageNumber, div: wrapper });
       stats.sort(function(a, b) {
         return a.pageNumber - b.pageNumber;
       });
@@ -495,7 +496,7 @@ var Stats = (function Stats() {
         this.panel.appendChild(stats[i].div);
       }
     },
-    cleanup() {
+    cleanup: function cleanup() {
       stats = [];
       clear(this.panel);
     },
@@ -514,7 +515,7 @@ window.PDFBug = (function PDFBugClosure() {
       StepperManager,
       Stats
     ],
-    enable(ids) {
+    enable: function enable(ids) {
       var all = false, tools = this.tools;
       if (ids.length === 1 && ids[0] === 'all') {
         all = true;
@@ -536,7 +537,7 @@ window.PDFBug = (function PDFBugClosure() {
         });
       }
     },
-    init(pdfjsLib, container) {
+    init: function init(pdfjsLib, container) {
       /*
        * Basic Layout:
        * PDFBug
@@ -589,14 +590,14 @@ window.PDFBug = (function PDFBugClosure() {
       }
       this.selectPanel(0);
     },
-    cleanup() {
+    cleanup: function cleanup() {
       for (var i = 0, ii = this.tools.length; i < ii; i++) {
         if (this.tools[i].enabled) {
           this.tools[i].cleanup();
         }
       }
     },
-    selectPanel(index) {
+    selectPanel: function selectPanel(index) {
       if (typeof index !== 'number') {
         index = this.tools.indexOf(index);
       }
