@@ -2141,8 +2141,8 @@ function webViewerKeyDown(evt) {
     if (cmd === 1 || cmd === 8) {
       switch (evt.keyCode) {
         case 83: // s
-          PDFViewerApplication.download();
-          handled = true;
+          // PDFViewerApplication.download();
+          // handled = true;
           break;
       }
     }
@@ -2203,10 +2203,10 @@ function webViewerKeyDown(evt) {
         /* falls through */
       case 75: // 'k'
       case 80: // 'p'
-        if (PDFViewerApplication.page > 1) {
-          PDFViewerApplication.page--;
-        }
-        handled = true;
+        // if (PDFViewerApplication.page > 1) {
+        //   PDFViewerApplication.page--;
+        // }
+        // handled = true;
         break;
       case 27: // esc key
         if (PDFViewerApplication.secondaryToolbar.isOpen) {
@@ -2235,10 +2235,10 @@ function webViewerKeyDown(evt) {
         /* falls through */
       case 74: // 'j'
       case 78: // 'n'
-        if (PDFViewerApplication.page < PDFViewerApplication.pagesCount) {
-          PDFViewerApplication.page++;
-        }
-        handled = true;
+        // if (PDFViewerApplication.page < PDFViewerApplication.pagesCount) {
+        //   PDFViewerApplication.page++;
+        // }
+        // handled = true;
         break;
 
       case 36: // home
@@ -2258,14 +2258,14 @@ function webViewerKeyDown(evt) {
         break;
 
       case 83: // 's'
-        PDFViewerApplication.pdfCursorTools.switchTool(CursorTool.SELECT);
+        // PDFViewerApplication.pdfCursorTools.switchTool(CursorTool.SELECT);
         break;
       case 72: // 'h'
-        PDFViewerApplication.pdfCursorTools.switchTool(CursorTool.HAND);
+        // PDFViewerApplication.pdfCursorTools.switchTool(CursorTool.HAND);
         break;
 
       case 82: // 'r'
-        PDFViewerApplication.rotatePages(90);
+        // PDFViewerApplication.rotatePages(90);
         break;
     }
   }
@@ -2284,7 +2284,7 @@ function webViewerKeyDown(evt) {
         break;
 
       case 82: // 'r'
-        PDFViewerApplication.rotatePages(-90);
+        // PDFViewerApplication.rotatePages(-90);
         break;
     }
   }

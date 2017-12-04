@@ -513,7 +513,6 @@ var renderTextLayer = (function renderTextLayerClosure() {
     _processItems(items, styleCache) {
       for (let i = 0, len = items.length; i < len; i++) {
         this._textContentItemsStr.push(items[i].str);
-        console.log(items[i].str.charCodeAt());
         appendText(this, items[i], styleCache);
       }
     },
