@@ -572,8 +572,21 @@ class EventBus {
     let args = Array.prototype.slice.call(arguments, 1);
     // Making copy of the listeners array in case if it will be modified
 
-    if (eventListeners.length > 2 && (eventName === 'nextpage' || eventName === 'previouspage' || eventName === 'rotatecw' || eventName === 'rotateccw' || eventName === 'find')) {
-        eventListeners = [eventListeners[0], eventListeners[1]];
+    if (eventListeners.length && (eventName === 'nextpage' || eventName === 'previouspage' || eventName === 'rotatecw' || eventName === 'rotateccw' || eventName === 'find')) {
+      var evtList = [];
+      for (var j = 0; j < eventListeners.length; ++j) {
+        var needToAdd = true;
+        for (var i = 0; i < evtList.length; ++i) {
+          if (evtList[i] === eventListeners[j]) {
+            needToAdd = false;
+            break;
+          }
+        }
+        if (needToAdd) {
+          evtList.push(eventListeners[j]);
+        }
+      }
+      eventListeners = evtList;
     }
     // during dispatch.
     eventListeners.slice(0).forEach(function (listener) {
