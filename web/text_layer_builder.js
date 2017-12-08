@@ -141,7 +141,8 @@ class TextLayerBuilder {
     }
     for (let m = 0, len = matches.length; m < len; m++) {
       // Calculate the start position.
-      let matchIdx = matches[m];
+      let currentMatch = matches[m];
+      let matchIdx = currentMatch.matchIdx;
 
       // Loop over the divIdxs.
       while (i !== end && matchIdx >=
@@ -165,7 +166,7 @@ class TextLayerBuilder {
       if (matchesLength) { // Multiterm search.
         matchIdx += matchesLength[m];
       } else { // Phrase search.
-        matchIdx += queryLen;
+        matchIdx += currentMatch.len;
       }
 
       // Somewhat the same array as above, but use > instead of >= to get

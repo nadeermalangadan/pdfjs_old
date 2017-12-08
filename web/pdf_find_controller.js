@@ -146,15 +146,57 @@ class PDFFindController {
   }
 
   calcFindPhraseMatch(query, pageIndex, pageContent) {
+    let copyPage = pageContent;
+    let multiWord = false;
+    let queryMultiWord = query.match(/\S+/g);
+    let regSearch = "";
+    function escapeRegExp(str) {
+      return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    }
+    if(queryMultiWord.length > 1){
+      copyPage = pageContent.replace(/  +/g, ' ');
+      if(copyPage.length < pageContent.length){
+        multiWord = true;
+        queryMultiWord.forEach(function(item){
+          let str = escapeRegExp(item);
+          if(regSearch){
+            regSearch += ' +' +str;
+          }else{
+            regSearch = str;
+          }
+        });
+      }
+    }
+
     let matches = [];
     let queryLen = query.length;
     let matchIdx = -queryLen;
+    let lastMatch = matchIdx;
     while (true) {
-      matchIdx = pageContent.indexOf(query, matchIdx + queryLen);
+      let lastMatchPos = matchIdx;
+      matchIdx = copyPage.indexOf(query, matchIdx + queryLen);
       if (matchIdx === -1) {
         break;
       }
-      matches.push(matchIdx);
+      if(multiWord && pageContent.substr(matchIdx,queryLen)!== query){
+        let newMatch = pageContent.substr(lastMatch+(matchIdx - lastMatchPos)).search(regSearch);
+        lastMatch = lastMatch+(matchIdx - lastMatchPos)+newMatch;
+
+        let lenAdd = 0;
+        let matchLoc = lastMatch;
+        for(let i=0;i<queryMultiWord.length;++i){
+          let loc = pageContent.indexOf(queryMultiWord[i],matchLoc);
+          lenAdd += loc - matchLoc;
+          matchLoc += queryMultiWord[i].length+1;
+        }
+
+        if(query.indexOf(queryMultiWord[0])!== -1){
+          lastMatch -= query.indexOf(queryMultiWord[0]);
+        }
+        matches.push({matchIdx:lastMatch,len:queryLen+lenAdd});
+      }else{
+        matches.push({matchIdx:matchIdx,len:queryLen});
+      }
     }
     this.pageMatches[pageIndex] = matches;
   }
