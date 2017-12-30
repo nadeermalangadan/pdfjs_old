@@ -602,6 +602,14 @@
        "lastPage": 1,
        "type": "eq"
     },
+    {  "id": "issue6737",
+       "file": "pdfs/issue6737.pdf",
+       "md5": "6f091967ad15ba63855c56049e86c68b",
+       "rounds": 1,
+       "link": true,
+       "lastPage": 1,
+       "type": "eq"
+    },
     {  "id": "issue5010",
        "file": "pdfs/issue5010.pdf",
        "md5": "419f4b13403a0871c463ec69d96e342c",
@@ -1310,7 +1318,8 @@
        "link": true,
        "firstPage": 2,
        "lastPage": 2,
-       "type": "eq"
+       "type": "eq",
+       "nativeImageDecoderSupport": "none"
     },
     {  "id": "issue6071",
        "file": "pdfs/issue6071.pdf",
@@ -2263,6 +2272,13 @@
       "rounds": 1,
       "link": true,
       "type": "eq"
+    },
+    {  "id": "issue9291",
+       "file": "pdfs/issue9291.pdf",
+       "md5": "8c3f4edff54c1ca0b67700a05ea0ccee",
+       "rounds": 1,
+       "link": false,
+       "type": "eq"
     },
     {  "id": "issue5751",
        "file": "pdfs/issue5751.pdf",
