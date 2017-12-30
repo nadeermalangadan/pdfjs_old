@@ -32,7 +32,7 @@ import { Metadata } from './metadata';
 import { PDFDataTransportStream } from './transport_stream';
 import { WebGLContext } from './webgl';
 
-var DEFAULT_RANGE_CHUNK_SIZE = 65536; // 2^16 = 65536
+var DEFAULT_RANGE_CHUNK_SIZE = 524288; // 2^16 = 65536 => 512 KB
 
 var isWorkerDisabled = false;
 var workerSrc;
