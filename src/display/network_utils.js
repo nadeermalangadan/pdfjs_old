@@ -27,6 +27,14 @@ function validateRangeRequestCapabilities({ getResponseHeader, isHttp,
   if (disableRange || !isHttp) {
     return returnValues;
   }
+
+  let length = parseInt(getResponseHeader('Content-Length'), 10);
+  if (!Number.isInteger(length)) {
+    return returnValues;
+  }
+
+  returnValues.suggestedLength = length;
+  
   if (getResponseHeader('Accept-Ranges') !== 'bytes') {
     return returnValues;
   }
@@ -36,12 +44,6 @@ function validateRangeRequestCapabilities({ getResponseHeader, isHttp,
     return returnValues;
   }
 
-  let length = parseInt(getResponseHeader('Content-Length'), 10);
-  if (!Number.isInteger(length)) {
-    return returnValues;
-  }
-
-  returnValues.suggestedLength = length;
   if (length <= 2 * rangeChunkSize) {
     // The file size is smaller than the size of two chunks, so it does not
     // make any sense to abort the request and retry with a range request.
