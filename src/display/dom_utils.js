@@ -340,7 +340,7 @@ function getDefaultSetting(id) {
     case 'pdfBug':
       return globalSettings ? globalSettings.pdfBug : false;
     case 'disableAutoFetch':
-      return globalSettings ? globalSettings.disableAutoFetch : false;
+      return globalSettings ? globalSettings.disableAutoFetch : true;
     case 'disableStream':
       return globalSettings ? globalSettings.disableStream : false;
     case 'disableRange':
