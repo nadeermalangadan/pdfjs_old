@@ -62,7 +62,7 @@ class PDFPageView {
     this.viewport = defaultViewport;
     this.pdfPageRotate = defaultViewport.rotation;
     this.hasRestrictedScaling = false;
-    this.enhanceTextSelection = options.enhanceTextSelection || false;
+    this.enhanceTextSelection = options.enhanceTextSelection || true;
     this.renderInteractiveForms = options.renderInteractiveForms || false;
 
     this.eventBus = options.eventBus || getGlobalEventBus();
