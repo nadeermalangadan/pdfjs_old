@@ -2165,21 +2165,21 @@ function webViewerKeyDown(evt) {
         }
         break;
 
-      case 38: // up arrow
-        if (isViewerInPresentationMode || PDFViewerApplication.page > 1) {
-          PDFViewerApplication.page = 1;
-          handled = true;
-          ensureViewerFocused = true;
-        }
-        break;
-      case 40: // down arrow
-        if (isViewerInPresentationMode ||
-            PDFViewerApplication.page < PDFViewerApplication.pagesCount) {
-          PDFViewerApplication.page = PDFViewerApplication.pagesCount;
-          handled = true;
-          ensureViewerFocused = true;
-        }
-        break;
+      // case 38: // up arrow
+      //   if (isViewerInPresentationMode || PDFViewerApplication.page > 1) {
+      //     PDFViewerApplication.page = 1;
+      //     handled = true;
+      //     ensureViewerFocused = true;
+      //   }
+      //   break;
+      // case 40: // down arrow
+      //   if (isViewerInPresentationMode ||
+      //       PDFViewerApplication.page < PDFViewerApplication.pagesCount) {
+      //     PDFViewerApplication.page = PDFViewerApplication.pagesCount;
+      //     handled = true;
+      //     ensureViewerFocused = true;
+      //   }
+      //   break;
     }
   }
 
@@ -2234,20 +2234,20 @@ function webViewerKeyDown(evt) {
 
   if (cmd === 0) { // no control key pressed at all.
     switch (evt.keyCode) {
-      case 38: // up arrow
-      case 33: // pg up
-      case 8: // backspace
-        if (!isViewerInPresentationMode &&
-            pdfViewer.currentScaleValue !== 'page-fit') {
-          break;
-        }
+      // case 38: // up arrow
+      // case 33: // pg up
+      // case 8: // backspace
+      //   if (!isViewerInPresentationMode &&
+      //       pdfViewer.currentScaleValue !== 'page-fit') {
+      //     break;
+      //   }
         /* in presentation mode */
         /* falls through */
-      case 37: // left arrow
-        // horizontal scrolling using arrow keys
-        if (pdfViewer.isHorizontalScrollbarEnabled) {
-          break;
-        }
+      // case 37: // left arrow
+      //   // horizontal scrolling using arrow keys
+      //   if (pdfViewer.isHorizontalScrollbarEnabled) {
+      //     break;
+      //   }
         /* falls through */
       case 75: // 'k'
       case 80: // 'p'
@@ -2267,20 +2267,20 @@ function webViewerKeyDown(evt) {
           handled = true;
         }
         break;
-      case 13: // enter key
-      case 40: // down arrow
-      case 34: // pg down
-      case 32: // spacebar
-        if (!isViewerInPresentationMode &&
-            pdfViewer.currentScaleValue !== 'page-fit') {
-          break;
-        }
+      // case 13: // enter key
+      // case 40: // down arrow
+      // case 34: // pg down
+      // case 32: // spacebar
+      //   if (!isViewerInPresentationMode &&
+      //       pdfViewer.currentScaleValue !== 'page-fit') {
+      //     break;
+      //   }
         /* falls through */
-      case 39: // right arrow
-        // horizontal scrolling using arrow keys
-        if (pdfViewer.isHorizontalScrollbarEnabled) {
-          break;
-        }
+      // case 39: // right arrow
+      //   // horizontal scrolling using arrow keys
+      //   if (pdfViewer.isHorizontalScrollbarEnabled) {
+      //     break;
+      //   }
         /* falls through */
       case 74: // 'j'
       case 78: // 'n'
@@ -2290,21 +2290,21 @@ function webViewerKeyDown(evt) {
         // handled = true;
         break;
 
-      case 36: // home
-        if (isViewerInPresentationMode || PDFViewerApplication.page > 1) {
-          PDFViewerApplication.page = 1;
-          handled = true;
-          ensureViewerFocused = true;
-        }
-        break;
-      case 35: // end
-        if (isViewerInPresentationMode ||
-            PDFViewerApplication.page < PDFViewerApplication.pagesCount) {
-          PDFViewerApplication.page = PDFViewerApplication.pagesCount;
-          handled = true;
-          ensureViewerFocused = true;
-        }
-        break;
+      // case 36: // home
+      //   if (isViewerInPresentationMode || PDFViewerApplication.page > 1) {
+      //     PDFViewerApplication.page = 1;
+      //     handled = true;
+      //     ensureViewerFocused = true;
+      //   }
+      //   break;
+      // case 35: // end
+      //   if (isViewerInPresentationMode ||
+      //       PDFViewerApplication.page < PDFViewerApplication.pagesCount) {
+      //     PDFViewerApplication.page = PDFViewerApplication.pagesCount;
+      //     handled = true;
+      //     ensureViewerFocused = true;
+      //   }
+      //   break;
 
       case 83: // 's'
         // PDFViewerApplication.pdfCursorTools.switchTool(CursorTool.SELECT);
@@ -2343,10 +2343,10 @@ function webViewerKeyDown(evt) {
     // 33=Page Up  34=Page Down  35=End    36=Home
     // 37=Left     38=Up         39=Right  40=Down
     // 32=Spacebar
-    if ((evt.keyCode >= 33 && evt.keyCode <= 40) ||
-        (evt.keyCode === 32 && curElementTagName !== 'BUTTON')) {
-      ensureViewerFocused = true;
-    }
+    // if ((evt.keyCode >= 33 && evt.keyCode <= 40) ||
+    //     (evt.keyCode === 32 && curElementTagName !== 'BUTTON')) {
+    //   ensureViewerFocused = true;
+    // }
   }
 
   if (ensureViewerFocused && !pdfViewer.containsElement(curElement)) {
